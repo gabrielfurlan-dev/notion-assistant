@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from openai import OpenAI
-from createPageNotion import criar_nota_no_notion
+from primitives_functions import createPageNotion
 import spacy
 import os
 
@@ -29,7 +29,7 @@ def langchain_workflow(audio_path):
     try:
         texto = transcrever_audio(audio_path)
         categoria = categorizar_nota(texto)
-        criar_nota_no_notion(texto, categoria)
+        createPageNotion.criar_nota_no_notion(texto, categoria)
         print("Nota criada.")  
     except Exception as e:
         print(f"Erro ao criar a nota: {e}")
