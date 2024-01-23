@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "dev": "node .\\dist\\index.js"
+  },
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.11.5",
+    "fastify": "^4.25.2",
+    "openai": "^4.25.0",
+    "tsc": "^2.0.4",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.1"
+  },
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node"
+  },
+  "include": [
+    "/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
