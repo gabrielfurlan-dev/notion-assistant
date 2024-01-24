@@ -3,7 +3,7 @@ import { INotionRepository } from "./INotionRepository";
 
 const baseAPI = "https://api.notion.com/v1"
 
-export class NotionRepository implements INotionRepository{
+export class NotionRepository implements INotionRepository {
     SearchPage(input: string): Promise<any> {
         return axios.get(`${baseAPI}/search`, {
             data: {
@@ -19,8 +19,15 @@ export class NotionRepository implements INotionRepository{
             }
         })
     }
-    
+
     CreatePage(input: string): Promise<any> {
+
+        //TODO: This function needs a formatted data in notion json to be executed
+
+        //TODO: Validate json format
+
+        //TODO: Send to notion
+
         throw new Error("Method not implemented.");
     }
 }
