@@ -21,13 +21,12 @@ async function main() {
         {
           role: "system",
           content: `
-            The user can type or spell wrong.
-            For searching notebooks and pages, consider the user can type or spell wrong, allways try to find the most similar notebook or page.
-            Even if the name of the nodebook or page doesn't exist, interpret the request and see if there is an equivalent page.
-            Pages are inside notebooks. A notebook can be single or multiple pages long.
-            Allawys verify if the notebook and page exists before create a new page.
-            Do not consider uppercase or lowercase letters coming from the user.
-            Be smart and unserstand what the user wants to do and where he wants to do.
+            - For searching notebooks and pages, consider the user can type or spell wrong, allways try to find the most similar notebook or page.
+            - Even if the name of the notebook or page doesn't exist, interpret the request and see if there is an equivalent page.
+            - Pages are inside notebooks. A notebook can be single or multiple pages long.
+            - Always verify if the notebook and page exists before create a new page.
+            - Do not consider uppercase or lowercase letters coming from the user.
+            - Be smart and unserstand what the user wants to do and where he wants to do.
             `,
         },
       ],
@@ -37,6 +36,7 @@ async function main() {
           function: {
             function: listNotebooks,
             description: "List all notebooks",
+            parameters: {}
           },
         },
         {

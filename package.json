@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^20.11.5",
+    "axios": "^1.6.5",
     "fastify": "^4.25.2",
     "openai": "^4.25.0",
     "tsc": "^2.0.4",
