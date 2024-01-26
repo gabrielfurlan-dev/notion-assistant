@@ -5,19 +5,23 @@
   "main": "index.ts",
   "author": "Gabriel Furlan",
   "license": "MIT",
+  "target": "es6",
+  "module": "CommonJS",
   "dependencies": {
     "axios": "^1.6.5",
+    "dotenv": "^16.4.1",
     "fastify": "^4.25.2",
     "openai": "^4.25.0",
     "tsc": "^2.0.4"
   },
   "devDependencies": {
-    "typescript": "^5.3.3",
     "@types/node": "^20.11.6",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "node index.js"
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
   }
 }

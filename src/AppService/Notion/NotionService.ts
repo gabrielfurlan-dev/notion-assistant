@@ -9,11 +9,11 @@ export class NotionService {
         this._repository = repository;
     }
 
-    CreatePage(page: NotionPageType) {
-        this._repository.CreatePage(page);
+    async CreatePage(page: NotionPageType) {
+        return await this._repository.CreatePage(page);
     }
 
-    SearchPage(input: string) {
-        this._repository.SearchPage(input);
+    async SearchPage(input: string) {
+        return await this._repository.SearchPage(input);
     }
 }
