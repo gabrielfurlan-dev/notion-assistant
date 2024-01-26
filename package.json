@@ -1,32 +1,23 @@
 {
-  "scripts": {
-    "dev": "node .\\dist\\index.js"
-  },
+  "name": "v2",
+  "version": "1.0.0",
+  "description": "Notion AI Assistant (unofficial)",
   "main": "index.ts",
+  "author": "Gabriel Furlan",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^20.11.5",
     "axios": "^1.6.5",
     "fastify": "^4.25.2",
     "openai": "^4.25.0",
-    "tsc": "^2.0.4",
-    "typescript": "^5.3.3"
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.6",
     "prettier": "^2.8.1"
   },
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node"
-  },
-  "include": [
-    "/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node index.js"
+  }
 }
