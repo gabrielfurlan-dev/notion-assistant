@@ -12,7 +12,8 @@
     "dotenv": "^16.4.1",
     "fastify": "^4.25.2",
     "openai": "^4.25.0",
-    "tsc": "^2.0.4"
+    "tsc": "^2.0.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.11.6",
@@ -22,6 +23,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/index.ts"
+    "dev": "tsc && node --env-file=.env ./build/index.js --watch",
+    "start": "node --env-file=.env ./dist/index.js"
   }
 }
