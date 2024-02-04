@@ -1,6 +1,7 @@
 import { NotionRepository } from './infra/NotionAPI/Repositories/NotionRepository';
 import { NotionService } from './AppService/Notion/NotionService';
 import OpenAI from "openai";
+import { NotionPageType } from './Domain/Notion/Types/NotionPageType';
 
 require('dotenv').config()
 
@@ -11,13 +12,23 @@ const client = new OpenAI({
 let notionRepository = new NotionRepository();
 let notionService = new NotionService(notionRepository);
 
+async function SearchPage({ input }: { input: string }) {
+  console.log("SEARCH: " + input)
+  return notionService.SearchPage(input);
+}
+
+async function CreatePage({ title, emoji, content }: { title: string, emoji: string; content: string }) {
+  console.log("PAGE: " + title + emoji + content)
+  return notionService.CreatePage(title, emoji, content);
+}
+
 async function main() {
   const runner = client.beta.chat.completions.runTools({
     model: "gpt-3.5-turbo",
     messages: [
       {
         role: "user",
-        content: "Crie uma página dentro do caderno de viagens, dê o nome de Sampa."
+        content: "Crie uma página dentro da página de viagens, e dê o nome de Sampa."
       },
       {
         role: "system",
@@ -30,41 +41,44 @@ async function main() {
       },
     ],
     tools: [
+      // {
+      //   type: "function",
+      //   function: {
+      //     function: SearchPage,
+      //     description: "Searches all parent or child pages and databases that have been shared with an integration.",
+      //     parse: JSON.parse,
+      //     parameters: {
+      //       type: "object",
+      //       properties: {
+      //         input: { type: "string", description: "parent pages name, child pages name or database name" },
+      //       },
+      //     },
+      //   },
+      // },
       {
         type: "function",
         function: {
-          function: await notionService.SearchPage,
-          description: "Searches all parent or child pages and databases that have been shared with an integration.",
+          function: CreatePage,
+          description: "necessary notion page title and description to create a page",
           parse: JSON.parse,
           parameters: {
             type: "object",
             properties: {
-              input: { type: "string", description: "parent pages name, child pages name or database name" },
-            },
-          },
-        },
-      },
-      {
-        type: "function",
-        function: {
-          function: await notionService.CreatePage,
-          description: "Create a page inside a notebook",
-          parse: JSON.parse,
-          parameters: {
-            type: "object",
-            properties: {
-              page: { type: "object", description: "Page JSON properties as type of notion page documentation" },
+              title: { type: "string", description: "page title" },
+              emoji: { type: "string", description: "page emoji related with title page" },
+              content: { type: "string", description: "content page" },
             },
           },
         },
       },
     ],
-  }).on("message", (message) => console.log(message))
+  })
+  // .on("message", (message) => console.log(message))
 
   const finalContent = await runner.finalContent();
 
-  console.log("response:", finalContent);
-  console.log("SERVER IS ON");
+  // console.log("response:", finalContent);
+  // console.log("SERVER IS ON");
 }
 
 main();

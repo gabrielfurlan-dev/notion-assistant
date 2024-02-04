@@ -1,10 +1,10 @@
 export type NotionPageType = {
     object: 'page',
-    id: string,
-    created_time: string, // ISO 8601 date and time
-    last_edited_time: string, // ISO 8601 date and time
-    archived: boolean,
-    parent?: Parent,
+    id?: string,
+    created_time?: string, // ISO 8601 date and time
+    last_edited_time?: string, // ISO 8601 date and time
+    archived?: boolean,
+    parent: Parent,
     icon?: {
         type: 'emoji' | 'external' | 'file',
         emoji?: string,
@@ -43,26 +43,30 @@ type NotionProperty =
     | EmailProperty
     | PhoneNumberProperty
 
-
 type Parent = {
     type?: 'database_id' | 'page_id' | 'workspace',
-    database_id?: string,
+    workspace?: boolean,
+    database_id: string,
     page_id?: string
 }
 
 type TitleProperty = {
-    id: string;
+    id?: string;
     type: 'title';
     title: {
-        plain_text: string;
+        text: {
+            content: string
+        };
     }[];
 };
 
 type RichTextProperty = {
-    id: string;
+    id?: string;
     type: 'rich_text';
     rich_text: {
-        plain_text: string;
+        text: {
+            content: string
+        };
         href?: string;
     }[];
 };
